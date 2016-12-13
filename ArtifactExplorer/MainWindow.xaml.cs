@@ -5,6 +5,7 @@
     using Microsoft.Build.Evaluation;
 
     using Simple.ArtifactExplorer.Domain;
+    using Simple.ArtifactExplorer.Properties;
     using Simple.ArtifactExplorer.ViewModels;
 
     /// <summary>
@@ -19,6 +20,7 @@
             this.InitializeComponent();
             this.viewModel = new MainWindowViewModel();
             this.DataContext = this.viewModel;
+            this.TextBoxBuildFile.Text = Settings.Default.MostRecentlyUsed;
         }
 
         private void ButtonLoadClick(object sender, RoutedEventArgs e)
@@ -32,6 +34,12 @@
             this.viewModel.BuildProjectFile = BuildProjectFile.Parse(projectFile);
 
             this.TreeView.ItemsSource = this.viewModel.Solutions;
+
+            if (Settings.Default.MostRecentlyUsed != this.TextBoxBuildFile.Text)
+            {
+                Settings.Default.MostRecentlyUsed = this.TextBoxBuildFile.Text;
+                Settings.Default.Save();
+            }
         }
     }
 }

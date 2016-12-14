@@ -23,6 +23,16 @@
 
         public static BuildProjectFile Parse(string projectFilePath)
         {
+            if (string.IsNullOrEmpty(projectFilePath))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", nameof(projectFilePath));
+            }
+
+            if (!File.Exists(projectFilePath))
+            {
+                throw new FileNotFoundException($"Project file not found. {projectFilePath}", projectFilePath);
+            }
+
             return Parse(new Project(projectFilePath));
         }
 
@@ -65,16 +75,16 @@
 
                 SolutionFile file = SolutionFile.Parse(solutionFile);
                 BuildSolution solution = new BuildSolution
-                                               {
-                                                   FullPath = solutionFile,
-                                                   Name = Path.GetFileNameWithoutExtension(solutionFile),
-                                                   SolutionFile = file,
-                                                   SolutionProjectItem = projectItem,
-                                                   ProjectsInSolution =
-                                                       new ObservableCollection<ProjectInSolution>(
-                                                           file.ProjectsInOrder.Where(p => p.ProjectType != SolutionProjectType.SolutionFolder)
-                                                               .OrderBy(x => x.ProjectName))
-                                               };
+                                             {
+                                                 FullPath = solutionFile,
+                                                 Name = Path.GetFileNameWithoutExtension(solutionFile),
+                                                 SolutionFile = file,
+                                                 SolutionProjectItem = projectItem,
+                                                 ProjectsInSolution =
+                                                     new ObservableCollection<ProjectInSolution>(
+                                                         file.ProjectsInOrder.Where(p => p.ProjectType != SolutionProjectType.SolutionFolder)
+                                                             .OrderBy(x => x.ProjectName))
+                                             };
 
                 result.MsBuildSolutions.Add(solution);
             }

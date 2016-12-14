@@ -38,7 +38,7 @@
 
                 solutions.Clear();
 
-                foreach (BuildSolution buildSolution in this.buildProjectFile.MsBuildSolutions)
+                foreach (BuildSolution buildSolution in this.buildProjectFile.BuildSolutions)
                 {
                     SolutionViewModel solutionViewModel = new SolutionViewModel(buildSolution) { Projects = { Filter = this.FilterProject } };
                     solutions.Add(solutionViewModel);

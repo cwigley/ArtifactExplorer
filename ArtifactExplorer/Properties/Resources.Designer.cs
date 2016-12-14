@@ -59,5 +59,15 @@ namespace Simple.ArtifactExplorer.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder_Open_32xLG {
+            get {
+                object obj = ResourceManager.GetObject("folder_Open_32xLG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

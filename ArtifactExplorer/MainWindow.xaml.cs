@@ -3,6 +3,7 @@
     using System.Windows;
 
     using Microsoft.Build.Evaluation;
+    using Microsoft.Win32;
 
     using Simple.ArtifactExplorer.Domain;
     using Simple.ArtifactExplorer.Properties;
@@ -21,6 +22,19 @@
             this.viewModel = new MainWindowViewModel();
             this.DataContext = this.viewModel;
             this.TextBoxBuildFile.Text = Settings.Default.MostRecentlyUsed;
+        }
+
+        private void ButtonBrowseClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog { Filter = "Proj files (*.proj)|*.proj|All files (.)|*.*" };
+
+            bool? result = fileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                string fileName = fileDialog.FileName;
+                this.TextBoxBuildFile.Text = fileName;
+            }
         }
 
         private void ButtonLoadClick(object sender, RoutedEventArgs e)

@@ -14,12 +14,12 @@
         {
             this.Items = new ObservableCollection<BuildItem>();
 
-            this.MsBuildSolutions = new ObservableCollection<BuildSolution>();
+            this.BuildSolutions = new ObservableCollection<BuildSolution>();
         }
 
         public ObservableCollection<BuildItem> Items { get; set; }
 
-        public ObservableCollection<BuildSolution> MsBuildSolutions { get; set; }
+        public ObservableCollection<BuildSolution> BuildSolutions { get; set; }
 
         public static BuildProjectFile Parse(string projectFilePath)
         {
@@ -86,7 +86,7 @@
                                                              .OrderBy(x => x.ProjectName))
                                              };
 
-                result.MsBuildSolutions.Add(solution);
+                result.BuildSolutions.Add(solution);
             }
 
             return result;

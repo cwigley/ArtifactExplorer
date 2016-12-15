@@ -35,7 +35,7 @@
 
                 ObservableCollection<SolutionViewModel> solutions =
                     this.Solutions.SourceCollection as ObservableCollection<SolutionViewModel>;
-
+                
                 solutions.Clear();
 
                 foreach (BuildSolution buildSolution in this.buildProjectFile.BuildSolutions)

@@ -1,4 +1,9 @@
-﻿namespace Simple.ArtifactExplorer.Domain
+﻿// <copyright file="BuildProjectFile.cs" company="AirWatch by VMWare">
+//  Copyright (c) 2016 AirWatch by VMWare. All rights reserved.
+//  This product is protected by copyright and intellectual property laws in the United States and other countries as well as by international treaties.
+//  AirWatch products may be covered by one or more patents listed at http://www.vmware.com/go/patents
+// </copyright>
+namespace Simple.ArtifactExplorer.Domain
 {
     using System;
     using System.Collections.ObjectModel;
@@ -17,9 +22,9 @@
             this.BuildSolutions = new ObservableCollection<BuildSolution>();
         }
 
-        public ObservableCollection<BuildItem> Items { get; set; }
-
         public ObservableCollection<BuildSolution> BuildSolutions { get; set; }
+
+        public ObservableCollection<BuildItem> Items { get; set; }
 
         public static BuildProjectFile Parse(string projectFilePath)
         {
@@ -66,8 +71,7 @@
                     continue;
                 }
 
-                string itemEvaluatedInclude = project.DirectoryPath + projectItem.EvaluatedInclude.Replace("/", @"\");
-                string solutionFile = Path.GetFullPath(itemEvaluatedInclude);
+                string solutionFile = ResolveSolutionFile(projectItem.EvaluatedInclude, project.DirectoryPath);
                 if (!File.Exists(solutionFile))
                 {
                     throw new FileNotFoundException("Solution file not found.", solutionFile);
@@ -82,14 +86,30 @@
                                                  SolutionProjectItem = projectItem,
                                                  ProjectsInSolution =
                                                      new ObservableCollection<ProjectInSolution>(
-                                                         file.ProjectsInOrder.Where(p => p.ProjectType != SolutionProjectType.SolutionFolder)
-                                                             .OrderBy(x => x.ProjectName))
+                                                         file.ProjectsInOrder.Where(p => p.ProjectType != SolutionProjectType.SolutionFolder).OrderBy(x => x.ProjectName))
                                              };
 
                 result.BuildSolutions.Add(solution);
             }
 
             return result;
+        }
+
+        private static string ResolveSolutionFile(string evaluatedInclude, string projectDirectoryPath)
+        {
+            string itemEvaluatedInclude;
+            string item = evaluatedInclude.Replace("/", @"\");
+            if (File.Exists(item))
+            {
+                itemEvaluatedInclude = item;
+            }
+            else
+            {
+                itemEvaluatedInclude = projectDirectoryPath + item;
+            }
+
+            string solutionFile = Path.GetFullPath(itemEvaluatedInclude);
+            return solutionFile;
         }
     }
 }

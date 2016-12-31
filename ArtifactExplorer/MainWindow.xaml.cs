@@ -34,10 +34,16 @@
             {
                 string fileName = fileDialog.FileName;
                 this.TextBoxBuildFile.Text = fileName;
+                LoadProject();
             }
         }
 
         private void ButtonLoadClick(object sender, RoutedEventArgs e)
+        {
+            LoadProject();
+        }
+
+        private void LoadProject()
         {
             if (ProjectCollection.GlobalProjectCollection.LoadedProjects.Count > 0)
             {

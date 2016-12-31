@@ -63,6 +63,11 @@
                 this.filterText = value;
                 this.OnPropertyChanged();
 
+                if (this.Solutions==null)
+                {
+                    return;
+                }
+
                 foreach (SolutionViewModel solutionViewModel in this.Solutions.SourceCollection)
                 {
                     solutionViewModel.Projects.Refresh();

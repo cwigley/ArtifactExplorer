@@ -55,5 +55,10 @@
                 Settings.Default.Save();
             }
         }
+
+        private void ButtonClearFilterClick(object sender, RoutedEventArgs e)
+        {
+            this.TextBoxSearch.Clear();
+        }
     }
 }

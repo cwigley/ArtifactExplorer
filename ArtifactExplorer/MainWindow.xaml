@@ -7,10 +7,8 @@
         mc:Ignorable="d"
         Title="Artifact Explorer" Height="800" Width="800" MinWidth="800" >
     <Window.Resources>
-
         <Image x:Key="OpenFolder" Source="pack://Application:,,,/Resources/folder_Open_32xLG.png" />
         <Image x:Key="ClearSearch" Source="pack://Application:,,,/Resources/VSO_StatusOffline_grey_16x.png" />
-
     </Window.Resources>
     <Window.DataContext>
         <viewModels:MainWindowViewModel/>
@@ -23,26 +21,18 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
-
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-
-
                 <Label Content="Project File" Margin="0,2,5,2" VerticalAlignment="Center" />
-
                 <TextBox x:Name="TextBoxBuildFile" TextWrapping="NoWrap" MinWidth="100" Grid.Column="1" VerticalContentAlignment="Center"  />
-
                 <Button  x:Name="ButtonBrowse"  Click="ButtonBrowseClick" Width="23"  BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Content="{DynamicResource OpenFolder}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" RenderTransformOrigin="-1.652,0.457" Grid.Column="2" Margin="0,0,1,0" BorderThickness="0,1,1,1"/>
-
                 <Label Content="Filter" Grid.Column="4" Margin="50,0,5,0" />
                 <TextBox x:Name="TextBoxSearch" TextWrapping="Wrap" Width="120" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="5" VerticalContentAlignment="Center" />
                 <Button x:Name="ButtonClearFilter" Width="23" Grid.Column="6" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Content="{DynamicResource ClearSearch}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" RenderTransformOrigin="-1.652,0.457" Margin="0,0,1,0" BorderThickness="0,1,1,1" Click="ButtonClearFilterClick"  />
-
             </Grid>
             <TreeView x:Name="TreeView" ItemsSource="{Binding Solutions}" DockPanel.Dock="Bottom"   >
-
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate  ItemsSource="{Binding (viewModels:SolutionViewModel.Projects)}" DataType="viewModels:ProjectViewModel">
                         <StackPanel Orientation="Horizontal" ToolTip="{Binding Name}">
@@ -50,17 +40,20 @@
                             <TextBlock Margin="10,0,0,0" Text="{Binding Projects.Count, StringFormat='(\{0\})'}" />
                         </StackPanel>
                         <HierarchicalDataTemplate.ItemTemplate>
-
                             <DataTemplate DataType="viewModels:ProjectViewModel">
-                                <TextBlock Text="{Binding Name}" Visibility="{Binding Visible}" />
+                                <StackPanel>
+                                    <StackPanel.ContextMenu>
+                                        <ContextMenu >
+                                            <MenuItem Header="Copy" Click="MenuItemClick"  Tag="{Binding FilePath}"/>
+                                        </ContextMenu>
+                                    </StackPanel.ContextMenu>
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>
-
-
                 </TreeView.ItemTemplate>
             </TreeView>
         </DockPanel>
     </Grid>
 </Window>
-

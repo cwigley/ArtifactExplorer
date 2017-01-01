@@ -1,6 +1,7 @@
 ﻿namespace Simple.ArtifactExplorer
 {
     using System.Windows;
+    using System.Windows.Controls;
 
     using Microsoft.Build.Evaluation;
     using Microsoft.Win32;
@@ -38,11 +39,6 @@
             }
         }
 
-        private void ButtonLoadClick(object sender, RoutedEventArgs e)
-        {
-            LoadProject();
-        }
-
         private void LoadProject()
         {
             if (ProjectCollection.GlobalProjectCollection.LoadedProjects.Count > 0)
@@ -65,6 +61,12 @@
         private void ButtonClearFilterClick(object sender, RoutedEventArgs e)
         {
             this.TextBoxSearch.Clear();
+        }
+
+        private void MenuItemClick(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            if (menuItem != null) Clipboard.SetText(menuItem.Tag.ToString());
         }
     }
 }

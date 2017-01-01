@@ -3,8 +3,6 @@
     using System.ComponentModel;
     using System.IO;
     using System.Runtime.CompilerServices;
-    using System.Windows;
-
     using Microsoft.Build.Construction;
 
     using Simple.ArtifactExplorer.Properties;
@@ -12,8 +10,6 @@
     public class ProjectViewModel : INotifyPropertyChanged
     {
         private readonly ProjectInSolution projectInSolution;
-
-        private Visibility visible;
 
         public ProjectViewModel(ProjectInSolution projectInSolution)
         {
@@ -24,24 +20,7 @@
 
         public string Name => Path.GetFileNameWithoutExtension(this.projectInSolution.AbsolutePath);
 
-        public Visibility Visible
-        {
-            get
-            {
-                return this.visible;
-            }
-
-            set
-            {
-                if (value == this.visible)
-                {
-                    return;
-                }
-
-                this.visible = value;
-                this.OnPropertyChanged();
-            }
-        }
+        public string FilePath => this.projectInSolution.AbsolutePath;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

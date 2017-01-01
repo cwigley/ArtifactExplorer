@@ -1,6 +1,7 @@
 ﻿namespace Simple.ArtifactExplorer
 {
     using System.Windows;
+    using System.Windows.Controls;
 
     using Microsoft.Build.Evaluation;
     using Microsoft.Win32;
@@ -34,10 +35,11 @@
             {
                 string fileName = fileDialog.FileName;
                 this.TextBoxBuildFile.Text = fileName;
+                LoadProject();
             }
         }
 
-        private void ButtonLoadClick(object sender, RoutedEventArgs e)
+        private void LoadProject()
         {
             if (ProjectCollection.GlobalProjectCollection.LoadedProjects.Count > 0)
             {
@@ -54,6 +56,17 @@
                 Settings.Default.MostRecentlyUsed = this.TextBoxBuildFile.Text;
                 Settings.Default.Save();
             }
+        }
+
+        private void ButtonClearFilterClick(object sender, RoutedEventArgs e)
+        {
+            this.TextBoxSearch.Clear();
+        }
+
+        private void MenuItemClick(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            if (menuItem != null) Clipboard.SetText(menuItem.Tag.ToString());
         }
     }
 }

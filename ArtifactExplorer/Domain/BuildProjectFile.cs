@@ -1,9 +1,4 @@
-﻿// <copyright file="BuildProjectFile.cs" company="AirWatch by VMWare">
-//  Copyright (c) 2016 AirWatch by VMWare. All rights reserved.
-//  This product is protected by copyright and intellectual property laws in the United States and other countries as well as by international treaties.
-//  AirWatch products may be covered by one or more patents listed at http://www.vmware.com/go/patents
-// </copyright>
-namespace Simple.ArtifactExplorer.Domain
+﻿namespace Simple.ArtifactExplorer.Domain
 {
     using System;
     using System.Collections.ObjectModel;

@@ -199,6 +199,6 @@
       <Output TaskParameter="Assemblies" ItemName="myAssemblyInfo" />
     </GetAssemblyIdentity>
     <Exec Command="nuget pack ArtifactExplorer.nuspec -Version %(myAssemblyInfo.Version) -Properties Configuration=Release -OutputDirectory $(OutDir) -BasePath $(OutDir)" />
-    <Exec Command="C:\projects\artifactexplorer\packages\squirrel.windows*\tools\squirrel --releasify $(OutDir)ArtifactExplorer.%(myAssemblyInfo.Version).nupkg" />
+    <Exec Command="C:\projects\artifactexplorer\packages\squirrel.windows.1.5.1\tools\squirrel --releasify $(OutDir)ArtifactExplorer.%(myAssemblyInfo.Version).nupkg" />
   </Target>
 </Project>

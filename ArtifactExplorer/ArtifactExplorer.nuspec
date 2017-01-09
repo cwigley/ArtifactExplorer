@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>ArtifactExplorer</id>
+        <version>1.0.0</version>
+        <authors>Chris Wigley</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>My package description.</description>
+    </metadata>
+    <files>
+        <file src="ArtifactExplorer.exe" target="lib\net45\ArtifactExplorer.exe" />
+        <file src="ArtifactExplorer.exe.config" target="lib\net45\ArtifactExplorer.exe.config" />
+        <file src="DeltaCompressionDotNet.dll" target="lib\net45\DeltaCompressionDotNet.dll" />
+        <file src="DeltaCompressionDotNet.MsDelta.dll" target="lib\net45\DeltaCompressionDotNet.MsDelta.dll" />
+        <file src="DeltaCompressionDotNet.PatchApi.dll" target="lib\net45\DeltaCompressionDotNet.PatchApi.dll" />
+        <file src="ICSharpCode.SharpZipLib.dll" target="lib\net45\ICSharpCode.SharpZipLib.dll" />
+        <file src="ICSharpCode.SharpZipLib.xml" target="lib\net45\ICSharpCode.SharpZipLib.xml" />
+        <file src="Mono.Cecil.dll" target="lib\net45\Mono.Cecil.dll" />
+        <file src="Mono.Cecil.Mdb.dll" target="lib\net45\Mono.Cecil.Mdb.dll" />
+        <file src="Mono.Cecil.Pdb.dll" target="lib\net45\Mono.Cecil.Pdb.dll" />
+        <file src="Mono.Cecil.Rocks.dll" target="lib\net45\Mono.Cecil.Rocks.dll" />
+        <file src="NuGet.Squirrel.dll" target="lib\net45\NuGet.Squirrel.dll" />
+        <file src="Splat.dll" target="lib\net45\Splat.dll" />
+        <file src="Squirrel.dll" target="lib\net45\Squirrel.dll" />
+    </files>
+</package>

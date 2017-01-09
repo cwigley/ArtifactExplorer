@@ -1,5 +1,7 @@
 ﻿namespace Simple.ArtifactExplorer
 {
+    using System.Reflection;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -9,6 +11,7 @@
     using Simple.ArtifactExplorer.Domain;
     using Simple.ArtifactExplorer.Properties;
     using Simple.ArtifactExplorer.ViewModels;
+    using Squirrel;
 
     /// <summary>
     /// Interaction logic for MainWindow.
@@ -17,9 +20,18 @@
     {
         private readonly MainWindowViewModel viewModel;
 
-        public MainWindow()
+        public  MainWindow()
         {
             this.InitializeComponent();
+            Task.Run(async ()=>
+            {
+                using (var mgr = UpdateManager.GitHubUpdateManager(@"http://www.github.com/cwigley/artifactexplorer"))
+                {
+                    await mgr.Result.UpdateApp();
+                }
+            });
+        
+            this.Title = this.Title + " " +Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.viewModel = new MainWindowViewModel();
             this.DataContext = this.viewModel;
             this.TextBoxBuildFile.Text = Settings.Default.MostRecentlyUsed;

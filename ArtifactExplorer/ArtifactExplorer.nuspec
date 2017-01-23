@@ -19,6 +19,8 @@
         <file src="Mono.Cecil.Mdb.dll" target="lib\net45\Mono.Cecil.Mdb.dll" />
         <file src="Mono.Cecil.Pdb.dll" target="lib\net45\Mono.Cecil.Pdb.dll" />
         <file src="Mono.Cecil.Rocks.dll" target="lib\net45\Mono.Cecil.Rocks.dll" />
+        <file src="NLog.config" target="lib\net45\NLog.config" />
+        <file src="NLog.dll" target="lib\net45\NLog.dll" />
         <file src="NuGet.Squirrel.dll" target="lib\net45\NuGet.Squirrel.dll" />
         <file src="Splat.dll" target="lib\net45\Splat.dll" />
         <file src="Squirrel.dll" target="lib\net45\Squirrel.dll" />

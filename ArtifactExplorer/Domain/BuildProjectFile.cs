@@ -69,10 +69,12 @@
                 string solutionFile = ResolveSolutionFile(projectItem.EvaluatedInclude, project.DirectoryPath);
                 if (!File.Exists(solutionFile))
                 {
+                    // TODO: Return an empty solution to allow partial loading.
                     throw new FileNotFoundException("Solution file not found.", solutionFile);
                 }
 
                 SolutionFile file = SolutionFile.Parse(solutionFile);
+                
                 BuildSolution solution = new BuildSolution
                                              {
                                                  FullPath = solutionFile,

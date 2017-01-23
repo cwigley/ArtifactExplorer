@@ -5,7 +5,8 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Windows.Data;
-
+    using Microsoft.Build.Evaluation;
+    using Microsoft.Build.Logging;
     using Simple.ArtifactExplorer.Domain;
     using Simple.ArtifactExplorer.Properties;
 
@@ -95,6 +96,12 @@
         {
             SolutionViewModel solution = o as SolutionViewModel;
             return !solution.Projects.IsEmpty;
+        }
+
+        internal void BuildProject(String v)
+        {
+            Project project = new Project(v);
+                project.Build(new FileLogger());
         }
     }
 }

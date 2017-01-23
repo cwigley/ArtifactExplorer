@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Simple.ArtifactExplorer.ViewModels"
         mc:Ignorable="d"
-        Title="Artifact Explorer" Height="800" Width="800" MinWidth="800" >
+        Title="Artifact Explorer" Height="600" Width="800" MinWidth="800" >
     <Window.Resources>
         <Image x:Key="OpenFolder" Source="pack://Application:,,,/Resources/folder_Open_32xLG.png" />
         <Image x:Key="ClearSearch" Source="pack://Application:,,,/Resources/VSO_StatusOffline_grey_16x.png" />
@@ -35,16 +35,17 @@
             <TreeView x:Name="TreeView" ItemsSource="{Binding Solutions}" DockPanel.Dock="Bottom"   >
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate  ItemsSource="{Binding (viewModels:SolutionViewModel.Projects)}" DataType="viewModels:ProjectViewModel">
-                        <StackPanel Orientation="Horizontal" ToolTip="{Binding Name}">
+                        <StackPanel Orientation="Horizontal" ToolTip="{Binding FilePath, Mode=OneWay}" >
                             <TextBlock Text="{Binding Name, Mode=OneWay}" />
                             <TextBlock Margin="10,0,0,0" Text="{Binding Projects.Count, StringFormat='(\{0\})'}" />
                         </StackPanel>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate DataType="viewModels:ProjectViewModel">
-                                <StackPanel>
+                                <StackPanel ToolTip="{Binding FilePath}">
                                     <StackPanel.ContextMenu>
                                         <ContextMenu >
                                             <MenuItem Header="Copy" Click="MenuItemClick"  Tag="{Binding FilePath}"/>
+                                            <MenuItem Header="Build" Click="BuildMenuItemClick" Tag="{Binding FilePath}" />
                                         </ContextMenu>
                                     </StackPanel.ContextMenu>
                                     <TextBlock Text="{Binding Name}" />

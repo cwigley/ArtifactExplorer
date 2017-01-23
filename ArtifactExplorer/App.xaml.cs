@@ -27,9 +27,10 @@
                 logger.Debug("++OnStartUp");
                 base.OnStartup(e);
 
-                using (var mgr = UpdateManager.GitHubUpdateManager("https://www.github.com/cwigley/artifactexplorer"))
+                using (var mgr = await UpdateManager.GitHubUpdateManager("https://www.github.com/cwigley/artifactexplorer"))
                 {
-                    await mgr.Result.UpdateApp();
+                    var result = await mgr.UpdateApp((percent)=> { logger.Debug($"Updating {percent}");});
+                    logger.Debug($"Version: {result.Version}");
                 }
                 logger.Debug("--OnStartUp");
             }

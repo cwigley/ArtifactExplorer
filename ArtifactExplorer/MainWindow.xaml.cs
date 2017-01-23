@@ -35,18 +35,6 @@
             }            
         }
 
-        
-
-        private async Task MainWindowAsync()
-        {
-            var mgr = await UpdateManager.GitHubUpdateManager("https://www.github.com/cwigley/artifactexplorer");  
-            var result = await mgr.CheckForUpdate();     
-            logger.Debug($"CurrentlyInstalledVersion:{result.CurrentlyInstalledVersion}");     
-            logger.Debug($"FutureReleaseEntry:{result.FutureReleaseEntry}");   
-            logger.Debug($"PackageDirectory:{result.PackageDirectory}");   
-            logger.Debug($"ReleasesToApply:{result.ReleasesToApply}");             
-        }
-
         private void ButtonBrowseClick(object sender, RoutedEventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog { Filter = "Proj files (*.proj)|*.proj|All files (.)|*.*" };

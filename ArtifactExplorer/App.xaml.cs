@@ -34,7 +34,7 @@
                     //{
                     //    logger.Debug($"Updating {percent}");
                     //});
-                    logger.Debug($"Version: {result.Version}");
+                    //logger.Debug($"Version: {result.Version}");
                 }
                 logger.Debug("--OnStartUp");
             }

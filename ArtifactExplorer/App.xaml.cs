@@ -30,10 +30,10 @@
                 using (var mgr = await UpdateManager.GitHubUpdateManager("https://www.github.com/cwigley/artifactexplorer"))
                 {
                     logger.Debug(mgr.ApplicationName);
-                    var result = await mgr.UpdateApp((percent)=> 
-                    {
-                        logger.Debug($"Updating {percent}");
-                    });
+                    //var result = await mgr.UpdateApp((percent)=> 
+                    //{
+                    //    logger.Debug($"Updating {percent}");
+                    //});
                     logger.Debug($"Version: {result.Version}");
                 }
                 logger.Debug("--OnStartUp");

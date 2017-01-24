@@ -5,7 +5,7 @@
         <version>1.0.0.0</version>
         <authors>Chris Wigley</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>An install package containing files necessary for the auto update.</description>
+        <description>ArtifactExplorer</description>
     </metadata>
     <files>
         <file src="ArtifactExplorer.exe" target="lib\net45\ArtifactExplorer.exe" />

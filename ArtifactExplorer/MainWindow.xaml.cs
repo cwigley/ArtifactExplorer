@@ -24,6 +24,7 @@
 
         public  MainWindow()
         {
+            logger.Debug("MainWindow++");
             this.InitializeComponent();
             this.Title = this.Title + " " +Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.viewModel = new MainWindowViewModel();
